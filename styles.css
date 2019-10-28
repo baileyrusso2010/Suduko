@@ -10,6 +10,19 @@ body{
     
 }
 
+#options{
+  text-align: center;
+}
+.btn{
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 24px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+
 li:nth-child(n):nth-child(-n+9) {
     border-top-width: 4px;
   }
@@ -64,3 +77,4 @@ li:nth-child(n):nth-child(-n+9) {
   @supports (display:grid) {
     .note {display:none;}
   }
+
