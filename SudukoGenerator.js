@@ -1,8 +1,6 @@
 let boardNumbers = [];
 var listBoard;
 
-window
-
 //on load
 document.addEventListener("DOMContentLoaded", function(event) { 
     
@@ -19,18 +17,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         //initialize variables
         init();
 
-});
+});//end of eventListener
 
 function init(){
     listBoard = document.getElementById("board").getElementsByTagName("li");
 
-    for(let i = 0; i < 81; i++)
-    {
-        let rand = Math.ceil(Math.random() *9);//random number
-        boardNumbers.push(rand);//puts numbers into list
-        
-        listBoard[i].innerHTML = rand;//updates html
-    }
+    GenerateBoard();
+
 
 }//end of init
 
@@ -42,8 +35,8 @@ function isInRow(row, number){
 
     let rowNumber = row * 9;//will get number to start at
 
-    if(rowNumber != 0)
-        rowNumber++;
+    // if(rowNumber != 0)
+    //     rowNumber++;
 
     for(let i = 0; i < 9; i++){
         if(boardNumbers[rowNumber+i] == number)
@@ -63,6 +56,7 @@ function isInCol(col, number){
     for(let i = 0; i < 9; i++){
         if(boardNumbers[col + i*9] == number)
         {
+
             return true;
         }
     }
@@ -100,5 +94,22 @@ function isInBox(row, col, number){
 }//end of isInBox
 
 function GoodNumber(row, col, number){
-    return !isInRow(row,number) && !isInCol(col, number) && !isInBox(row, col, number)
+    return !isInRow(row,number) && !isInCol(col, number) && !isInBox(row, col, number);
 }
+
+function GenerateBoard(){
+
+    let rand = Math.ceil(Math.random() *9);//random number
+
+    for(let i =0; i < 3; i++){
+        for(let j = 0; j < 9; j++){
+            while(isInRow(i,rand) || isInCol(j,rand) || isInBox(i,j,rand)){
+                console.log( rand + "this is in the row");
+                rand =  Math.ceil(Math.random() *9);       
+            }
+            boardNumbers.push(rand);
+            listBoard[i*9+j].innerHTML = rand;
+        }
+    }
+ 
+}//end of GenerateBoad
